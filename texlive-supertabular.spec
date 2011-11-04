@@ -53,6 +53,7 @@ a few situations where longtable won't.
 #- source
 %doc %{_texmfdistdir}/source/latex/supertabular/supertabular.dtx
 %doc %{_texmfdistdir}/source/latex/supertabular/supertabular.ins
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -63,3 +64,5 @@ a few situations where longtable won't.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}

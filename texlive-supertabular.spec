@@ -6,7 +6,7 @@
 # catalog-version 4.1a
 Name:		texlive-supertabular
 Version:	4.1a
-Release:	2
+Release:	3
 Summary:	A multi-page tables package
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/supertabular

@@ -1,50 +1,24 @@
-Name:		texlive-supertabular
-Version:	53658
-Release:	2
+%global tl_name supertabular
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	4.2c
+Release:	%{tl_revision}.1
 Summary:	A multi-page tables package
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/supertabular
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.source.r%{version}.tar.xz
+License:	lppl1.3c
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/supertabular.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Generally longtable is a little easier to use and more
-flexible, but supertabular has its place, since it will work in
-a few situations where longtable won't.
+The package was a predecessor of longtable; the newer package (designed
+on quite different principles) is easier to use and more flexible, in
+many cases, but supertabular retains its usefulness in a few situations
+where longtable has problems.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/supertabular/supertabular.sty
-%doc %{_texmfdistdir}/doc/latex/supertabular/CATALOG
-%doc %{_texmfdistdir}/doc/latex/supertabular/ChangeLog
-%doc %{_texmfdistdir}/doc/latex/supertabular/MANIFEST
-%doc %{_texmfdistdir}/doc/latex/supertabular/README
-%doc %{_texmfdistdir}/doc/latex/supertabular/supertabular.pdf
-#- source
-%doc %{_texmfdistdir}/source/latex/supertabular/supertabular.dtx
-%doc %{_texmfdistdir}/source/latex/supertabular/supertabular.ins
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
